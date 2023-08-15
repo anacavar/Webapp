@@ -17,4 +17,18 @@ export class AuthController {
   ): Promise<{ accessToken: string }> {
     return this.authService.signIn(authCredentialsDto);
   }
+
+  // @Post('/refresh')
+  // refreshToken(
+  //   @Body() authCredentialsDto: AuthCredentialsDto,
+  // ): Promise<{ refreshToken: string }> {
+  //   return this.authService.refresh(authCredentialsDto);
+  // }
+
+  // @Post('/logout')
+  // logOut(
+  //   @Body() authCredentialsDto: AuthCredentialsDto): Promise<void> {
+  //     return this.authService.logOut(authCredentialsDto);
+  //   }
+  // )
 }

@@ -33,4 +33,8 @@ export class AuthService {
       throw new UnauthorizedException('Please check your login credentials');
     }
   }
+
+  // refreshToken() {}
+
+  // logOut() {}
 }
