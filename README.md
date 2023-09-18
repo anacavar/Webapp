@@ -2,7 +2,7 @@
 
 Backend start:
 
-> cd nestjs-task-management
+> cd nestjs-backend
 > yarn start
 
 Frontend start:
