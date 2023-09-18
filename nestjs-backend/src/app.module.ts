@@ -5,8 +5,8 @@ import { Task } from './tasks/task.entity';
 import { TypeOrmExModule } from './database/typeorm-ex.module';
 import { TasksRepository } from './tasks/tasks.repository';
 import { AuthModule } from './auth/auth.module';
-import { User } from './auth/user.entity';
-import { UsersRepository } from './auth/users.repository';
+import { User } from './database/entities/user.entity';
+import { UsersRepository } from './auth/repositories/users.repository';
 import { ConfigModule } from '@nestjs/config';
 
 @Module({

@@ -1,11 +1,11 @@
 import { Module } from '@nestjs/common';
-import { AuthService } from './auth.service';
-import { AuthController } from './auth.controller';
-import { UsersRepository } from './users.repository';
+import { AuthService } from './services/auth.service';
+import { AuthController } from './controllers/auth.controller';
+import { UsersRepository } from './repositories/users.repository';
 import { TypeOrmExModule } from 'src/database/typeorm-ex.module';
 import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
-import { JwtStrategy } from './jwt.strategy';
+import { JwtStrategy } from '../common/strategies/jwt.strategy';
 
 @Module({
   imports: [
