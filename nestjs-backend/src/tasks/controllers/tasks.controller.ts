@@ -9,11 +9,11 @@ import {
   Query,
   UseGuards,
 } from '@nestjs/common';
-import { CreateTaskDto } from './dto/create-task.dto';
-import { UpdateTaskStatusDto } from './dto/update-task-status.dto';
-import { GetTasksFilterDto } from './dto/get-tasks-filter.dto';
-import { TasksService } from './tasks.service';
-import { Task } from './task.entity';
+import { CreateTaskDto } from '../dto/create-task.dto';
+import { UpdateTaskStatusDto } from '../dto/update-task-status.dto';
+import { GetTasksFilterDto } from '../dto/get-tasks-filter.dto';
+import { TasksService } from '../services/tasks.service';
+import { Task } from '../../database/entities/task.entity';
 import { AuthGuard } from '@nestjs/passport';
 import { GetUser } from 'src/common/decorators/get-user.decorator';
 import { User } from 'src/database/entities/user.entity';

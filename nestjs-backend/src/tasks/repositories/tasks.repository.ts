@@ -1,8 +1,8 @@
 import { Repository } from 'typeorm';
-import { Task } from './task.entity';
-import { CustomRepository } from '../database/typeorm-ex.decorator';
-import { TaskStatus } from './task-status.enum';
-import { GetTasksFilterDto } from './dto/get-tasks-filter.dto';
+import { Task } from '../../database/entities/task.entity';
+import { CustomRepository } from '../../database/typeorm-ex.decorator';
+import { TaskStatus } from '../../common/enums/task-status.enum';
+import { GetTasksFilterDto } from '../dto/get-tasks-filter.dto';
 import { User } from 'src/database/entities/user.entity';
 import { InternalServerErrorException, Logger } from '@nestjs/common';
 
