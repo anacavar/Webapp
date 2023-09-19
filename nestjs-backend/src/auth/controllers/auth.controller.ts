@@ -20,7 +20,7 @@ export class AuthController {
     return this.authService.signIn(authCredentialsDto, response);
   }
 
-  @Get('/getuser') // prebaci kasnije u servis
+  @Get('/getuser')
   getUser(@Req() request: Request): Promise<any> {
     return this.authService.getUser(request);
   }
