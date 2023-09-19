@@ -2,14 +2,10 @@ import { Body, Controller, Post, Get, Res, Req } from '@nestjs/common';
 import { AuthService } from '../services/auth.service';
 import { AuthCredentialsDto } from '../dto/auth-credentials.dto';
 import { Response, Request } from 'express';
-import { JwtService } from '@nestjs/jwt';
 
 @Controller('auth')
 export class AuthController {
-  constructor(
-    private authService: AuthService,
-    private jwtService: JwtService, // ovo prebaci kasnije u servis
-  ) {}
+  constructor(private authService: AuthService) {}
 
   @Post('/signup')
   signUp(@Body() authCredentialsDto: AuthCredentialsDto): Promise<void> {
@@ -25,10 +21,8 @@ export class AuthController {
   }
 
   @Get('/getuser') // prebaci kasnije u servis
-  async getUser(@Req() request: Request) {
-    const cookie = request.cookies['jwt-accessToken'];
-    const data = await this.jwtService.verifyAsync(cookie);
-    return data;
+  getUser(@Req() request: Request): Promise<any> {
+    return this.authService.getUser(request);
   }
 
   // @Post('/refresh')

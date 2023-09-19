@@ -5,7 +5,7 @@ import { UsersRepository } from '../repositories/users.repository';
 import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
 import { JwtPayload } from '../../common/strategies/jwt-payload.interface';
-import { Response } from 'express';
+import { Response, Request } from 'express';
 
 @Injectable()
 export class AuthService {
@@ -31,9 +31,22 @@ export class AuthService {
       const payload: JwtPayload = { username };
       const accessToken: string = await this.jwtService.sign(payload);
       response.cookie('jwt-accessToken', accessToken, { httpOnly: true });
-      return { message: 'success' };
+      return { message: 'User logged in successfully' };
     } else {
       throw new UnauthorizedException('Please check your login credentials');
+    }
+  }
+
+  async getUser(request: Request): // authCredentialsDto: AuthCredentialsDto,
+  Promise<any> {
+    try {
+      const cookie = request.cookies['jwt-accessToken'];
+      const data = await this.jwtService.verifyAsync(cookie);
+      return data;
+    } catch {
+      return {
+        message: 'Jwt token expired or another internal server error occurred',
+      }; // ovo stoji samo za jednu vrstu 500 internal errora
     }
   }
 
