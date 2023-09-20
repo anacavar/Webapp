@@ -1,7 +1,7 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { AuthCredentialsDto } from '../dto/auth-credentials.dto';
-import { UsersRepository } from '../repositories/users.repository';
+import { UsersRepository } from '../../users/repositories/users.repository';
 import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
 import { JwtPayload } from '../../common/strategies/jwt-payload.interface';
@@ -42,15 +42,24 @@ export class AuthService {
     try {
       const cookie = request.cookies['jwt-accessToken'];
       const data = await this.jwtService.verifyAsync(cookie);
-      return data;
-    } catch {
-      return {
-        message: 'Jwt token expired or another internal server error occurred',
-      }; // ovo stoji samo za jednu vrstu 500 internal errora
+      const user = await this.usersRepository.findOne({
+        where: { id: data['id'] },
+      });
+      const { password, ...result } = user;
+      return result; // zašto ovo vrati usera anna1?
+    } catch (e) {
+      throw new UnauthorizedException();
     }
   }
 
-  // refreshToken() {}
+  // refreshToken() {} // čemu ovo točno?
 
-  // logOut() {}
+  async logOut(
+    authCredentialsDto: AuthCredentialsDto,
+    response: Response,
+  ): Promise<{ message: string }> {
+    //clear the cookie
+    response.clearCookie('jwt-accessToken');
+    return { message: 'user successfully logged out' };
+  }
 }

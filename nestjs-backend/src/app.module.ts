@@ -6,8 +6,9 @@ import { TypeOrmExModule } from './database/typeorm-ex.module';
 import { TasksRepository } from './tasks/repositories/tasks.repository';
 import { AuthModule } from './auth/auth.module';
 import { User } from './database/entities/user.entity';
-import { UsersRepository } from './auth/repositories/users.repository';
+import { UsersRepository } from './users/repositories/users.repository';
 import { ConfigModule } from '@nestjs/config';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { ConfigModule } from '@nestjs/config';
     }),
     TypeOrmExModule.forCustomRepository([TasksRepository, UsersRepository]),
     AuthModule,
+    UsersModule,
   ],
 })
 export class AppModule {}

@@ -1,7 +1,7 @@
 import { Repository } from 'typeorm';
 import { User } from '../../database/entities/user.entity';
 import { CustomRepository } from '../../database/typeorm-ex.decorator';
-import { AuthCredentialsDto } from '../dto/auth-credentials.dto';
+import { AuthCredentialsDto } from '../../auth/dto/auth-credentials.dto';
 import {
   ConflictException,
   InternalServerErrorException,

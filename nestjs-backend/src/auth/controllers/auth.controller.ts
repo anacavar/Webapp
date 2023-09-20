@@ -1,7 +1,16 @@
-import { Body, Controller, Post, Get, Res, Req } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Post,
+  Get,
+  Res,
+  Req,
+  UseGuards,
+} from '@nestjs/common';
 import { AuthService } from '../services/auth.service';
 import { AuthCredentialsDto } from '../dto/auth-credentials.dto';
 import { Response, Request } from 'express';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('auth')
 export class AuthController {
@@ -21,6 +30,7 @@ export class AuthController {
   }
 
   @Get('/getuser')
+  @UseGuards(AuthGuard())
   getUser(@Req() request: Request): Promise<any> {
     return this.authService.getUser(request);
   }
@@ -32,10 +42,15 @@ export class AuthController {
   //   return this.authService.refresh(authCredentialsDto);
   // }
 
-  // @Post('/logout')
-  // logOut(
-  //   @Body() authCredentialsDto: AuthCredentialsDto): Promise<void> {
-  //     return this.authService.logOut(authCredentialsDto);
-  //   }
-  // )
+  @Post('/logout')
+  @UseGuards(AuthGuard())
+  logOut(
+    @Body() authCredentialsDto: AuthCredentialsDto,
+    @Req() response: Response,
+  ): Promise<{ message: string }> {
+    // ): Promise<{ message: string }> {
+    return this.authService.logOut(authCredentialsDto, response);
+    // console.log('logged out');
+    // return { message: 'User is successfully logged out' };
+  }
 }
