@@ -11,7 +11,8 @@ import { JwtStrategy } from '../common/strategies/jwt.strategy';
   imports: [
     PassportModule.register({ defaultStrategy: 'jwt' }),
     JwtModule.register({
-      secret: 'topSecret51', // mislim da se ovo treba prebacit u env?
+      secret: 'topSecret51',
+      // secret: process.env.JWT_SECRET, // mislim da se ovo treba prebacit u env?
       signOptions: { expiresIn: 3600 },
     }),
     TypeOrmExModule.forCustomRepository([UsersRepository]),

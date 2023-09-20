@@ -29,8 +29,15 @@ export class AuthController {
     return this.authService.signIn(authCredentialsDto, response);
   }
 
+  // @Post('/signin')
+  // signIn(
+  //   @Body() authCredentialsDto: AuthCredentialsDto,
+  // ): Promise<{ accessToken: string }> {
+  //   return this.authService.signIn(authCredentialsDto);
+  // }
+
   @Get('/getuser')
-  @UseGuards(AuthGuard())
+  // @UseGuards(AuthGuard())
   getUser(@Req() request: Request): Promise<any> {
     return this.authService.getUser(request);
   }
@@ -43,7 +50,7 @@ export class AuthController {
   // }
 
   @Post('/logout')
-  @UseGuards(AuthGuard())
+  // @UseGuards(AuthGuard())
   logOut(
     @Body() authCredentialsDto: AuthCredentialsDto,
     @Req() response: Response,

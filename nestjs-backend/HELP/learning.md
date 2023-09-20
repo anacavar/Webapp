@@ -19,3 +19,5 @@ Tutorials used:
 > 18/09/2023: "NextJs & NestJS JWT Authentication" by Scalable Scripts - https://www.youtube.com/watch?v=5rlsUfQTRzs&list=PLlameCF3cMEu8KAN-02n3CtToO5iYELTV&ab_channel=ScalableScripts
 
 > još neisprobani: https://www.learmoreseekmore.com/2021/05/nestjs-jwt-auth-cookie-series-part3-refresh-token.html
+
+> KRENI S OVIM SUTRA (20/9/2023): https://www.youtube.com/watch?v=_L225zpUK0M&ab_channel=MariusEspejo
