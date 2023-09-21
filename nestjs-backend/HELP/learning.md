@@ -20,4 +20,8 @@ Tutorials used:
 
 > još neisprobani: https://www.learmoreseekmore.com/2021/05/nestjs-jwt-auth-cookie-series-part3-refresh-token.html
 
-> KRENI S OVIM SUTRA (20/9/2023): https://www.youtube.com/watch?v=_L225zpUK0M&ab_channel=MariusEspejo
+> KRENI S OVIM SUTRA (20/9/2023): https://www.youtube.com/watch?v=_L225zpUK0M&ab_channel=MariusEspejo - odlično objašnjeno u zadnjem dijelu
+
+> > vraćalo je 401 zato što token nije u authorization header smješten (moraš ga ručno zalijepiti u bearer token u odgovarajućem protected requestu)
+
+> možda ga samo spremim u cookie i tu je backend gotov??
