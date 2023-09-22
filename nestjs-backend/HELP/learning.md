@@ -25,3 +25,5 @@ Tutorials used:
 > > vraćalo je 401 zato što token nije u authorization header smješten (moraš ga ručno zalijepiti u bearer token u odgovarajućem protected requestu)
 
 > možda ga samo spremim u cookie i tu je backend gotov??
+
+WHY ARE THERE NO COOKIES RECEIVED FROM THE SERVER? > start here: https://learning.postman.com/docs/sending-requests/cookies/

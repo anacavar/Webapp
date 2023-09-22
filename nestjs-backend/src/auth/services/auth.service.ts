@@ -75,7 +75,12 @@ export class AuthService {
     response: Response,
   ): Promise<{ message: string }> {
     //clear the cookie
-    response.clearCookie('jwt-accessToken');
-    return { message: 'user successfully logged out' };
+    try {
+      response.clearCookie('jwt-accessToken');
+      return { message: 'user successfully logged out' };
+    } catch {
+      console.log('ne mre');
+      return { message: 'neki error - koji?' };
+    }
   }
 }

@@ -51,7 +51,7 @@ export class AuthController {
   // }
 
   @Post('/logout')
-  // @UseGuards(AuthGuard())
+  @UseGuards(JwtAuthGuard)
   logOut(
     @Body() authCredentialsDto: AuthCredentialsDto,
     @Req() response: Response,
