@@ -15,8 +15,11 @@ export class AuthService {
     private jwtService: JwtService,
   ) {}
 
-  async signUp(authCredentialsDto: AuthCredentialsDto): Promise<void> {
-    return this.usersRepository.createUser(authCredentialsDto);
+  async signUp(
+    authCredentialsDto: AuthCredentialsDto,
+  ): Promise<{ message: string }> {
+    this.usersRepository.createUser(authCredentialsDto);
+    return { message: 'User signed up successfully' };
   }
 
   async signIn(
@@ -70,17 +73,21 @@ export class AuthService {
 
   // refreshToken() {} // čemu ovo točno?
 
-  async logOut(
-    authCredentialsDto: AuthCredentialsDto,
+  async logout(
+    // authCredentialsDto: AuthCredentialsDto,
     response: Response,
-  ): Promise<{ message: string }> {
+  ): // authCredentialsDto: AuthCredentialsDto,
+  // response: Response,
+  Promise<{ message: string }> {
+    response.clearCookie('jwt-accessToken');
     //clear the cookie
-    try {
-      response.clearCookie('jwt-accessToken');
-      return { message: 'user successfully logged out' };
-    } catch {
-      console.log('ne mre');
-      return { message: 'neki error - koji?' };
-    }
+    // try {
+    //   response.clearCookie('jwt-accessToken');
+    //   return { message: 'user successfully logged out' };
+    // } catch {
+    //   console.log('ne mre');
+    //   return { message: 'neki error - koji?' };
+    // }
+    return { message: 'cookie cleared??' };
   }
 }

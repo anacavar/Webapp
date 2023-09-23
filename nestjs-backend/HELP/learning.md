@@ -27,3 +27,11 @@ Tutorials used:
 > možda ga samo spremim u cookie i tu je backend gotov??
 
 WHY ARE THERE NO COOKIES RECEIVED FROM THE SERVER? > start here: https://learning.postman.com/docs/sending-requests/cookies/
+
+!! BAZA: pgAdmin 4
+
+PostgreSQL = The most trusted name in the open source relational databases, "technically an object-relational database"
+
+Research point > RUN SQL ON DATABASE FROM VSCODE??? https://www.youtube.com/watch?v=C0y35FpiLRA&ab_channel=DatabaseStar
+
+> NE ZNAM EVO VRATI SE MALO NA SQL TUTORIALE, PROBAJ OPET DOKER SPOJIT... I TAK, AK NIŠ NE USPIJE FRESH BACKEND POSTAVI....

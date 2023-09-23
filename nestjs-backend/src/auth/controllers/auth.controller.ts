@@ -18,14 +18,16 @@ export class AuthController {
   constructor(private authService: AuthService) {}
 
   @Post('/signup')
-  signUp(@Body() authCredentialsDto: AuthCredentialsDto): Promise<void> {
+  signUp(
+    @Body() authCredentialsDto: AuthCredentialsDto,
+  ): Promise<{ message: string }> {
     return this.authService.signUp(authCredentialsDto);
   }
 
   @Post('/signin')
   signIn(
     @Body() authCredentialsDto: AuthCredentialsDto,
-    @Res({ passthrough: true }) response: Response,
+    @Res({ passthrough: true }) response: Response, //čemu služi passthrough? -> "because we want the cookie, to send it to the frontend"
   ): Promise<{ message: string }> {
     return this.authService.signIn(authCredentialsDto, response);
   }
@@ -51,14 +53,21 @@ export class AuthController {
   // }
 
   @Post('/logout')
-  @UseGuards(JwtAuthGuard)
-  logOut(
-    @Body() authCredentialsDto: AuthCredentialsDto,
-    @Req() response: Response,
-  ): Promise<{ message: string }> {
-    // ): Promise<{ message: string }> {
-    return this.authService.logOut(authCredentialsDto, response);
-    // console.log('logged out');
-    // return { message: 'User is successfully logged out' };
+  // @UseGuards(JwtAuthGuard)
+  logout(@Res() response: Response): Promise<{ message: string }> {
+    // return { message: 'heelo' };
+    console.log('is there anybody out there?');
+    return this.authService.logout(response);
   }
+
+  // @Post('/logout')
+  // @UseGuards(JwtAuthGuard)
+  // logOut(
+  //   @Body() authCredentialsDto: AuthCredentialsDto,
+  //   @Res() response: Response, //RES BRIJEM????
+  // ): Promise<{ message: string }> {
+  //   return this.authService.logout(authCredentialsDto, response);
+  //   // console.log('logged out');
+  //   // return { message: 'User is successfully logged out' };
+  // }
 }
