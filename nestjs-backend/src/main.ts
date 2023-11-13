@@ -10,7 +10,7 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.use(cookieParser());
   app.enableCors({
-    origin: 'http://localhost:8080',
+    origin: 'http://localhost:8081', // bilo je 8080 al onda mi se postgres nasro tu iz nekog razloga...
     credentials: true, // "in order for the frontend to get the cookie"
   });
   app.useGlobalPipes(new ValidationPipe());

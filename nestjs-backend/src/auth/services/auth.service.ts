@@ -24,7 +24,7 @@ export class AuthService {
   async signIn(
     authCredentialsDto: AuthCredentialsDto,
     response: Response,
-  ): Promise<{ message: string }> {
+  ): Promise<{ accessToken: string }> {
     const { username, password } = authCredentialsDto;
     const user = await this.usersRepository.findOne({
       where: { username: username },
@@ -33,7 +33,8 @@ export class AuthService {
       const payload: JwtPayload = { username };
       const accessToken: string = await this.jwtService.sign(payload);
       response.cookie('jwt-accessToken', accessToken, { httpOnly: true });
-      return { message: 'User logged in successfully' };
+      // return { message: 'User logged in successfully' };
+      return { accessToken };
     } else {
       throw new UnauthorizedException('Please check your login credentials');
     }

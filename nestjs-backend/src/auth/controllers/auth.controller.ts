@@ -28,7 +28,8 @@ export class AuthController {
   signIn(
     @Body() authCredentialsDto: AuthCredentialsDto,
     @Res({ passthrough: true }) response: Response, //čemu služi passthrough? -> "because we want the cookie, to send it to the frontend"
-  ): Promise<{ message: string }> {
+  ): Promise<{ accessToken: string }> {
+    //trenutni frontend očekuje da se proslijedi token
     return this.authService.signIn(authCredentialsDto, response);
   }
 
