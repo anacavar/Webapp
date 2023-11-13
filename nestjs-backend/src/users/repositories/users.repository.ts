@@ -10,7 +10,9 @@ import * as bcrypt from 'bcrypt';
 
 @CustomRepository(User)
 export class UsersRepository extends Repository<User> {
-  async createUser(authCredentialsDto: AuthCredentialsDto): Promise<void> {
+  async createUser(
+    authCredentialsDto: AuthCredentialsDto,
+  ): Promise<{ message: string }> {
     const { username, password } = authCredentialsDto;
 
     const salt = await bcrypt.genSalt();
@@ -23,6 +25,7 @@ export class UsersRepository extends Repository<User> {
 
     try {
       await this.save(user);
+      return { message: 'User signed up successfully' };
     } catch (error) {
       if (error.code === '23505') {
         // error is duplicate username
@@ -32,4 +35,38 @@ export class UsersRepository extends Repository<User> {
       }
     }
   }
+
+  async getUsers(): Promise<User[]> {
+    const query = this.createQueryBuilder('user');
+    const users = await query.getMany();
+    return users;
+  }
+
+  // async getTasks(filterDto: GetTasksFilterDto, user: User): Promise<Task[]> {
+  //   const { status, search } = filterDto;
+  //   const query = this.createQueryBuilder('task');
+  //   query.where({ user });
+
+  //   if (status) {
+  //     query.andWhere('task.status=:status', { status: 'OPEN' });
+  //   }
+  //   if (search) {
+  //     query.andWhere(
+  //       '(LOWER(task.title) LIKE LOWER(:search) OR LOWER(task.description) LIKE LOWER(:search))',
+  //       { search: `%${search}%` },
+  //     );
+  //   }
+
+  //   try {
+  //     const tasks = await query.getMany();
+  //     return tasks;
+  //   } catch (error) {
+  //     this.logger.error(
+  //       `Failed to get tasks for user "${
+  //         user.username
+  //       }". Filters: ${JSON.stringify(filterDto)}`,
+  //     );
+  //     throw new InternalServerErrorException();
+  //   }
+  // }
 }

@@ -3,7 +3,7 @@ import { IsString, Matches, MaxLength, MinLength } from 'class-validator';
 export class AuthCredentialsDto {
   @IsString()
   @MinLength(4)
-  @MaxLength(20)
+  @MaxLength(25)
   @Matches(
     /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
     { message: 'email address must be valid' },

@@ -35,3 +35,8 @@ PostgreSQL = The most trusted name in the open source relational databases, "tec
 Research point > RUN SQL ON DATABASE FROM VSCODE??? https://www.youtube.com/watch?v=C0y35FpiLRA&ab_channel=DatabaseStar
 
 > NE ZNAM EVO VRATI SE MALO NA SQL TUTORIALE, PROBAJ OPET DOKER SPOJIT... I TAK, AK NIŠ NE USPIJE FRESH BACKEND POSTAVI....
+
+DOCKER:
+$ docker run --name postgres-nest -p 5432:5432 -e POSTGRES_PASSWORD=postgres -d postgres
+
+> 040153790bd1c7d8792ca7b747269c32e7fd4f41bbc5b82163e397392205e692

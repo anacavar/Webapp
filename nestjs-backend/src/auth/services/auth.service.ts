@@ -18,8 +18,7 @@ export class AuthService {
   async signUp(
     authCredentialsDto: AuthCredentialsDto,
   ): Promise<{ message: string }> {
-    this.usersRepository.createUser(authCredentialsDto);
-    return { message: 'User signed up successfully' };
+    return this.usersRepository.createUser(authCredentialsDto);
   }
 
   async signIn(

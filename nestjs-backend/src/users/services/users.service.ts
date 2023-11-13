@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { UsersRepository } from '../repositories/users.repository';
 import { InjectRepository } from '@nestjs/typeorm';
-// import { User } from '../../database/entities/user.entity';
+import { User } from '../../database/entities/user.entity';
 
 @Injectable() // što ovo znači?
 export class UsersService {
@@ -10,7 +10,7 @@ export class UsersService {
     private usersRepository: UsersRepository,
   ) {}
 
-  async getUsers(): Promise<{ message: string }> {
-    return { message: 'users begotten' };
+  async getUsers(): Promise<User[]> {
+    return this.usersRepository.getUsers();
   }
 }
