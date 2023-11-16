@@ -1,5 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { useNavigate } from "react-router-dom";
+import Cookies from "universal-cookie";
+import axios from "axios";
 
 const authSlice = createSlice({
   name: "auth",
@@ -9,6 +11,8 @@ const authSlice = createSlice({
       const { user, accessToken } = action.payload;
       state.user = user;
       state.token = accessToken;
+      const cookie = new Cookies();
+      cookie.set("accessToken", accessToken, { secure: true, httpOnly: true }); // ee možda zbog http onlyja??
     },
     logOut: (state, action) => {
       state.user = null;

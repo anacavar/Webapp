@@ -33,6 +33,12 @@ export class AuthController {
     return this.authService.signIn(authCredentialsDto, response);
   }
 
+  @UseGuards(JwtAuthGuard)
+  @Get('/test') // služi testiranju kako poslati token unutar authorization headera
+  test(): string {
+    return 'test successful';
+  }
+
   // @Post('/signin')
   // signIn(
   //   @Body() authCredentialsDto: AuthCredentialsDto,
@@ -41,7 +47,7 @@ export class AuthController {
   // }
 
   @Get('/getuser')
-  @UseGuards(AuthGuard())
+  @UseGuards(AuthGuard()) // zaš ovo nije JwtAuthGuard?
   getUser(@Req() request: Request): Promise<any> {
     return this.authService.getUser(request);
   }

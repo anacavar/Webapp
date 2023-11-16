@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { setCredentials } from "../features/auth/authSlice";
 import { useLoginMutation } from "../features/auth/authApiSlice";
 import { useNavigate } from "react-router-dom";
+import axios from "../app/api/axios";
 
 function LoginForm() {
   const LOGIN_URL = "http://localhost:3000/auth/signin";
