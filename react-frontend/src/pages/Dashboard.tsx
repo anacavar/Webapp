@@ -12,17 +12,18 @@ const Dashboard = () => {
 
   const welcome = user ? `Welcome ${user}!` : "Welcome!";
   const tokenAbbr = `${token.slice(0, 9)}...`;
+  // const token = useSelector(selectCurrentToken);
 
   const testFunction = async (e: any) => {
-    e.preventDefault();
-
-    const token = useSelector(selectCurrentToken);
+    // const token = useSelector(selectCurrentToken); // ovo je izazvalo errror!!
     try {
+      // console.log("jesam");
       const testResponse = await axios.get("http://localhost:3000/auth/test", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
+      console.log(testResponse.data);
     } catch {
       console.log("error");
     }
@@ -34,7 +35,7 @@ const Dashboard = () => {
       <p>{welcome}</p>
       <p>Token: {tokenAbbr}</p>
       <button onClick={logOut}>Log Out</button>
-      {/* <button onClick={testFunction}>Test Authorization Header</button> */}
+      <button onClick={testFunction}>Test Authorization Header</button>
     </>
   );
 };
