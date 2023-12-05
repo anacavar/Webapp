@@ -24,19 +24,16 @@ export class AuthController {
     return this.authService.signUp(authCredentialsDto);
   }
 
+  //spremamo token u cookie
   @Post('/signin')
-  signIn(
+  async signIn(
     @Body() authCredentialsDto: AuthCredentialsDto,
     @Res({ passthrough: true }) response: Response, //čemu služi passthrough? -> "because we want the cookie, to send it to the frontend"
-  ): Promise<{ accessToken: string }> {
-    //trenutni frontend očekuje da se proslijedi token
-    return this.authService.signIn(authCredentialsDto, response);
-  }
-
-  @UseGuards(JwtAuthGuard)
-  @Get('/test') // služi testiranju kako poslati token unutar authorization headera
-  test(): string {
-    return 'test successful';
+  ): Promise<void> {
+    const returned = await this.authService.signIn(authCredentialsDto);
+    response.cookie('jwt-accessToken', returned.accessToken, {
+      httpOnly: true,
+    });
   }
 
   // @Post('/signin')
@@ -45,6 +42,12 @@ export class AuthController {
   // ): Promise<{ accessToken: string }> {
   //   return this.authService.signIn(authCredentialsDto);
   // }
+
+  @UseGuards(JwtAuthGuard)
+  @Get('/test') // služi testiranju kako poslati token unutar authorization headera
+  test(): string {
+    return 'test successful';
+  }
 
   @Get('/getuser')
   @UseGuards(AuthGuard()) // zaš ovo nije JwtAuthGuard?

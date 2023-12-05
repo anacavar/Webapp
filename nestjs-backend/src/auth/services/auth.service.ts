@@ -23,7 +23,6 @@ export class AuthService {
 
   async signIn(
     authCredentialsDto: AuthCredentialsDto,
-    response: Response,
   ): Promise<{ accessToken: string }> {
     const { username, password } = authCredentialsDto;
     const user = await this.usersRepository.findOne({
@@ -32,7 +31,8 @@ export class AuthService {
     if (user && (await bcrypt.compare(password, user.password))) {
       const payload: JwtPayload = { username };
       const accessToken: string = await this.jwtService.sign(payload);
-      response.cookie('jwt-accessToken', accessToken, { httpOnly: true });
+      // response.cookie('jwt-accessToken', accessToken, { httpOnly: true }); //Error: Cannot set headers after they are sent to the client
+      console.log('accessToken', accessToken);
       return { accessToken };
     } else {
       throw new UnauthorizedException('Please check your login credentials');

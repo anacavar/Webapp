@@ -16,7 +16,6 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
       // secretOrKey: process.env.JWT_SECRET,
       secretOrKey: 'topSecret51',
       ignoreExpiration: false, // da provjeri je li token još valjan
-      // jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
     });
   }
@@ -27,10 +26,8 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
       where: { username: username },
     });
     if (!user) {
-      // možda simply ne nalazi usera u bazi??
       throw new UnauthorizedException();
     }
-    // console.log(user);
     return user;
   }
 }
