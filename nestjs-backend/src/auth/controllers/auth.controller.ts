@@ -31,9 +31,10 @@ export class AuthController {
     @Res({ passthrough: true }) response: Response, //čemu služi passthrough? -> "because we want the cookie, to send it to the frontend"
   ): Promise<void> {
     const returned = await this.authService.signIn(authCredentialsDto);
-    response.cookie('jwt-accessToken', returned.accessToken, {
-      httpOnly: true,
-    });
+    response.cookie('jwt-accessToken', returned.accessToken);
+    // response.cookie('jwt-accessToken', returned.accessToken, {
+    //   httpOnly: true,
+    // });
   }
 
   // @Post('/signin')

@@ -8,11 +8,16 @@ const authSlice = createSlice({
   initialState: { user: null, token: null },
   reducers: {
     setCredentials: (state, action) => {
-      const { user, accessToken } = action.payload;
+      console.log(action.payload);
+      const { user } = action.payload;
       state.user = user;
-      state.token = accessToken;
+
+      // state.token = accessToken;
       const cookie = new Cookies();
-      cookie.set("accessToken", accessToken, { secure: true, httpOnly: true }); // ee možda zbog http onlyja??
+      const accessToken = cookie.get("jwt-accessToken"); // brijem da ga ne možeš dohvatit zbog http cookija
+      console.log(accessToken);
+      state.token = accessToken;
+      // cookie.set("accessToken", accessToken, { secure: true, httpOnly: true }); // ee možda zbog http onlyja??
     },
     logOut: (state, action) => {
       state.user = null;
