@@ -13,7 +13,7 @@ const Dashboard = () => {
   const tokenAbbr = `${token.slice(0, 9)}...`;
   const dispatch = useDispatch();
 
-  function test() {
+  function logoutFunc() {
     dispatch(logOut());
   }
 
@@ -22,7 +22,7 @@ const Dashboard = () => {
       <h1>Dashboard</h1>
       <p>{welcome}</p>
       <p>Token: {tokenAbbr}</p>
-      <button onClick={test}>Log Out</button>
+      <button onClick={logoutFunc}>Log Out</button>
     </>
   );
 };
