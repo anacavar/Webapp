@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import Cookies from "universal-cookie";
 
 const authSlice = createSlice({
   name: "auth",
@@ -8,6 +9,9 @@ const authSlice = createSlice({
       console.log(action.payload);
       const { user } = action.payload;
       state.user = user;
+      const cookie = new Cookies();
+      const accessToken = cookie.get("jwt-accessToken"); // brijem da ga ne možeš dohvatit zbog http cookija
+      state.token = accessToken;
     },
     logOut: (state) => {
       state.user = null;

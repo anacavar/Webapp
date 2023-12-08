@@ -7,7 +7,6 @@ import Cookies from "universal-cookie";
 // Commonly, this is done using the Authorization header with a value like Bearer <token>.
 const RequireAuth = () => {
   const user = useSelector(selectCurrentUser);
-  const cookie = new Cookies();
   const location = useLocation();
   return user ? (
     <Outlet />
