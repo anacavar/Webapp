@@ -22,7 +22,9 @@ const Dashboard = () => {
       <h1>Dashboard</h1>
       <p>{welcome}</p>
       <p>Token: {tokenAbbr}</p>
-      <button onClick={logoutFunc}>Log Out</button>
+      <button id="logout-button" onClick={logoutFunc}>
+        Log Out
+      </button>
     </>
   );
 };

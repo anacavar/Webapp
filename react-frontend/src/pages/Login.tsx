@@ -60,7 +60,9 @@ function LoginForm() {
         </p>
         <h1>Login</h1>
         <form onSubmit={handleSubmit}>
-          <label htmlFor="email">Email:</label>
+          <label id="email-input" htmlFor="email">
+            Email:
+          </label>
           <input
             type="email"
             id="email"
@@ -70,7 +72,9 @@ function LoginForm() {
             value={user}
             required
           />
-          <label htmlFor="password">Password:</label>
+          <label id="password-input" htmlFor="password">
+            Password:
+          </label>
           <input
             type="password"
             id="password"
@@ -78,13 +82,15 @@ function LoginForm() {
             value={pwd}
             required
           />
-          <button>Log In</button>
+          <button id="login-button">Log In</button>
           <div className="loginlinks">
             <p>
               Don't have an account?
               <br />
               <span>
-                <a href="/register">Sign Up</a>
+                <a id="register-link" href="/register">
+                  Sign Up
+                </a>
               </span>
             </p>
             <p>

@@ -187,6 +187,7 @@ function RegisterForm() {
               Must match the first password input field.
             </p>
             <button
+              id="register-button"
               disabled={!validName || !validPwd || !validMatch ? true : false}
             >
               Sign up
